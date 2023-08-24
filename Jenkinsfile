@@ -19,7 +19,7 @@ pipeline {
         }
          stage('Login') {
       steps {
-        echo '$DOCKER_HUB_CREDENTIALS'
+        echo "$DOCKER_HUB_CREDENTIALS"
         sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_CREDENTIALS'
       }
     }
