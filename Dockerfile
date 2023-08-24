@@ -6,10 +6,10 @@ WORKDIR /usr/hellodocker
 # copy build filed
 # COPY ./package.json package-lock.json./
 # copy build files
-COPY package.json package-lock.json ./
+COPY package.json ./
 
 # install dependencies
-RUN npm ci --force
+RUN npm install --force
 
 # copying whole data
 COPY ./ ./
