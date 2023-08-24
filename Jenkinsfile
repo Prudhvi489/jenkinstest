@@ -6,7 +6,7 @@ pipeline {
         DOCKER_HUB_PASSWORD = 'dckr_pat_YINljCcDnG4zisBKDc2K57F-_xs'
         DOCKER_HUB_CREDENTIALS = credentials('jenkins_dockerhub')
         IMAGE_NAME = 'prudhvisai489/first_jenkins'
-        TAG = 'latest'
+        TAG = 'v1'
     }
     
     stages {
@@ -19,7 +19,7 @@ pipeline {
         }
          stage('Login') {
       steps {
-        sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
+        sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_CREDENTIALS'
       }
     }
     stage('Push') {
