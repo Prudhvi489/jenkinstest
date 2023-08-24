@@ -20,10 +20,10 @@ pipeline {
             steps {
                 script {
                     // withCredentials([string(credentialsId: "$DOCKER_HUB_CREDENTIALS", variable: "DOCKER_HUB_CREDENTIALS")]) 
-                     withDockerRegistry([credentialsId: 'jenkins_dockerhub', url: ''])
+                     withDockerRegistry([credentialsId: "$DOCKER_HUB_CREDENTIALS", url: ''])
                     
                      {
-                        sh "docker login -u prudhvisai489 -p $DOCKER_HUB_CREDENTIALS"
+                        // sh "docker login -u prudhvisai489 -p $DOCKER_HUB_CREDENTIALS"
                         sh "docker push $IMAGE_NAME:$TAG"
                     }
                 }
