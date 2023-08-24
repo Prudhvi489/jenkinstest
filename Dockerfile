@@ -1,19 +1,18 @@
-#baseimage
+# Use the official Node.js Alpine image as the base image
 FROM node:alpine
-# specifying the working directory
-WORKDIR /usr/hellodocker
 
-# copy build filed
-# COPY ./package.json package-lock.json./
-# copy build files
+# Set the working directory inside the container
+WORKDIR /usr/jenkinstest
+
+# Copy package.json and package-lock.json to the working directory
 COPY package.json package-lock.json ./
 
-# install dependencies
-RUN npm ci --force
+# Install dependencies using npm ci
+RUN npm install
 
-# copying whole data
-COPY ./ ./
+# Copy the rest of the application code to the working directory
+COPY . .
 
-# startup command
-CMD ["npm","start"]
+# Specify the command to run your application
+CMD ["npm", "start"]
 # dckr_pat_YINljCcDnG4zisBKDc2K57F-_xs ->docker credential id
