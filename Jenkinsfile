@@ -5,16 +5,19 @@ pipeline {
         DOCKER_HUB_USERNAME = 'prudhvisai489'
         DOCKER_HUB_PASSWORD = 'dckr_pat_YINljCcDnG4zisBKDc2K57F-_xs'
         DOCKER_HUB_CREDENTIALS = credentials('jenkins_dockerhub')
-        IMAGE_NAME = 'prudhvisai489/secondr_jenkins'
+        IMAGE_NAME = 'prudhvisai489/secondd_jenkins'
         TAG = 'latest'
     }
     
     stages {
         stage('Build') {
             steps {
-                script {
+                withGithub(credentialsId: 'github') {
                     sh 'docker build -t $IMAGE_NAME:$TAG .'
                 }
+                // script {
+                //     sh 'docker build -t $IMAGE_NAME:$TAG .'
+                // }
             }
         }
          stage('Login') {
