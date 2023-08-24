@@ -16,3 +16,4 @@ COPY ./ ./
 
 # startup command
 # CMD ["npm","start"]
+# dckr_pat_YINljCcDnG4zisBKDc2K57F-_xs ->docker credential id
