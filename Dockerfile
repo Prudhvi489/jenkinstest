@@ -9,10 +9,10 @@ WORKDIR /usr/hellodocker
 COPY package.json ./
 
 # install dependencies
-RUN npm install --force
+# RUN npm install --force
 
 # copying whole data
 COPY ./ ./
 
 # startup command
-CMD ["npm","start"]
+# CMD ["npm","start"]
