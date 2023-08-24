@@ -8,7 +8,7 @@ WORKDIR /usr/jenkinstest
 COPY package.json package-lock.json ./
 
 # Install dependencies using npm ci
-RUN npm install
+RUN npm install --force
 
 # Copy the rest of the application code to the working directory
 COPY . .
