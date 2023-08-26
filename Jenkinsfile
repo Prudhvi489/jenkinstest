@@ -29,7 +29,7 @@ pipeline {
     }
     stage('Deploy to AWS') {
         steps {
-             // Pulling the image from Docker Hub 
+             // Pulling the image from Docker Hubb
 
            sh 'docker pull $IMAGE_NAME:$TAG'
 
