@@ -12,9 +12,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // withGithub(credentialsId: 'github') {
-                //     sh 'docker build -t $IMAGE_NAME:$TAG .'
-                // }
                 script {
                     sh 'docker build -t $IMAGE_NAME:$TAG .'
                 }
