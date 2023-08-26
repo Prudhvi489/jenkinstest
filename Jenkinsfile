@@ -30,18 +30,17 @@ pipeline {
         sh 'docker push $IMAGE_NAME'
       }
     }
-        // stage('Push') {
-        //     steps {
-        //         script {
-        //             // withCredentials([string(credentialsId: "$DOCKER_HUB_CREDENTIALS", variable: "DOCKER_HUB_CREDENTIALS")]) 
-        //              withDockerRegistry([credentialsId: "jenkins_dockerhub", url: ''])
-                    
-        //              {
-        //                 // sh "docker login -u prudhvisai489 -p $DOCKER_HUB_CREDENTIALS"
-        //                 sh "docker push $IMAGE_NAME:$TAG"
-        //             }
-        //         }
-        //     }
-        // }
+    stage('Deploy to AWS') {
+        steps {
+             // Pull the image from Docker Hub
+           sh 'docker pull $IMAGE_NAME:$TAG'
+
+           // SSH into the EC2 instance
+          sh 'ssh -i "docker.pem" ubuntu@ec2-44-208-6-196.compute-1.amazonaws.com'
+
+           // Run the image on the EC2 instance
+          sh 'docker run  -p 3000:3000 --name jenkins $IMAGE_NAME:$TAG'
+         }
+    }
     }
 }
