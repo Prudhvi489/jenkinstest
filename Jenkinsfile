@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Deploy to AWS') {
         steps {
-             // Pull the image from Docker Hub
+             // Pulling the image from Docker Hub
            sh 'docker pull $IMAGE_NAME:$TAG'
 
            // SSH into the EC2 instance
