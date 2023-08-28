@@ -2,6 +2,7 @@ pipeline {
     agent any
     
     environment {
+        PATH = "${PATH}:/home/prudhvi/.local/bin/eb"
         DOCKER_HUB_USERNAME = 'prudhvisai489'
         DOCKER_HUB_PASSWORD = 'dckr_pat_YINljCcDnG4zisBKDc2K57F-_xs'
         DOCKER_HUB_CREDENTIALS = credentials('jenkins_dockerhub')
