@@ -31,7 +31,7 @@ pipeline {
         //   deploy stages
            stage('Deploy to Elastic Beanstalk') {
                   steps {
-                      sh 'eb deploy'
+                      sh '/home/prudhvi/.local/bin/eb deploy'
                   }
            }
           
