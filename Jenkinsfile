@@ -27,6 +27,7 @@ pipeline {
                  sh 'docker push $IMAGE_NAME'
             }
           }
+        //   deploy stage
            stage('Deploy to Elastic Beanstalk') {
                   steps {
                       sh 'eb deploy'
