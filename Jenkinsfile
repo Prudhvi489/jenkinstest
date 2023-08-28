@@ -18,27 +18,34 @@ pipeline {
             }
         }
          stage('Login') {
-      steps {
-        sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
-      }
-    }
-    stage('Push') {
-      steps {
-        sh 'docker push $IMAGE_NAME'
-      }
-    }
-    stage('Deploy to AWS') {
-        steps {
-             // Pulling the image from Docker Hub
-
-           sh 'docker pull $IMAGE_NAME:$TAG'
-
-           // SSH into the EC2 instance
-          sh 'ssh -v -i "/home/prudhvi/Pictures/pemfiles/docker.pem" ubuntu@ec2-44-208-6-196.compute-1.amazonaws.com'
-
-           // Run the image on the EC2 instance
-          sh 'docker run  -p 3000:3000 --name jenkins $IMAGE_NAME:$TAG'
+           steps {
+               sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
+           }
          }
-    }
+         stage('Push') {
+            steps {
+                 sh 'docker push $IMAGE_NAME'
+            }
+           }
+          stages {
+              stage('Deploy to Elastic Beanstalk') {
+                  steps {
+                      sh 'eb deploy'
+                  }
+              }
+          }
+    // stage('Deploy to AWS') {
+    //     steps {
+    //          // Pulling the image from Docker Hub
+
+    //        sh 'docker pull $IMAGE_NAME:$TAG'
+
+    //        // SSH into the EC2 instance
+    //       sh 'ssh -v -i "/home/prudhvi/Pictures/pemfiles/docker.pem" ubuntu@ec2-44-208-6-196.compute-1.amazonaws.com'
+
+    //        // Run the image on the EC2 instance
+    //       sh 'docker run  -p 3000:3000 --name jenkins $IMAGE_NAME:$TAG'
+    //      }
+    // }
     }
 }

@@ -1,0 +1,21 @@
+{
+    "AWSEBDockerrunVersion": "1.0",
+    "Image": "prudhvisai489/data_jenkins:latest",
+    "Ports": [
+      {
+        "ContainerPort": 3000
+      }
+    ],
+    "Environment": {
+      "NODE_ENV": "production"
+    },
+    "HealthCheck": {
+      "Command": [
+        "/opt/elasticbeanstalk/hooks/appdeploy/pre/01_healthcheck.sh"
+      ],
+      "Interval": 300,
+      "Timeout": 5,
+      "Retries": 3
+    }
+  }
+  
