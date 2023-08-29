@@ -10,6 +10,8 @@ pipeline {
         TAG = 'latest'
         EB_APP_NAME = 'starting-app' // Replace with your EB application name
         EB_ENV_NAME = 'Starting-app-env' // Replace with your EB environment name
+        IAM_ROLE_NAME = 'docker-test1'
+        EC2_INSTANCE_PROFILE_NAME = 'arn:aws:iam::416691263379:instance-profile/docker-test1'
     }
     
     stages {
@@ -33,7 +35,7 @@ pipeline {
         //   deploy staged
            stage('Deploy to Elastic Beanstalk') {
                   steps {
-                       sh "/home/prudhvi/.local/bin/eb deploy $EB_ENV_NAME"
+                       sh "eb deploy $EB_ENV_NAME --profile $IAM_ROLE_NAME --instance-profile=$EC2_INSTANCE_PROFILE_NAME"
                   }
            }
           
