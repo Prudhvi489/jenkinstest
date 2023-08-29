@@ -8,6 +8,8 @@ pipeline {
         DOCKER_HUB_CREDENTIALS = credentials('jenkins_dockerhub')
         IMAGE_NAME = 'prudhvisai489/data_jenkins'
         TAG = 'latest'
+        EB_APP_NAME = 'starting-app' // Replace with your EB application name
+        EB_ENV_NAME = 'Starting-app-env' // Replace with your EB environment name
     }
     
     stages {
@@ -31,7 +33,7 @@ pipeline {
         //   deploy stages
            stage('Deploy to Elastic Beanstalk') {
                   steps {
-                      sh '/home/prudhvi/.local/bin/eb deploy'
+                       sh "/home/prudhvi/.local/bin/eb deploy $EB_ENV_NAME"
                   }
            }
           
