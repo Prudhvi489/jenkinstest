@@ -30,7 +30,7 @@ pipeline {
                  sh 'docker push $IMAGE_NAME'
             }
           }
-        //   deploy stage
+        //   deploy stages
            stage('Deploy to Elastic Beanstalk') {
                   steps {
                        sh "/home/prudhvi/.local/bin/eb deploy $EB_ENV_NAME"
