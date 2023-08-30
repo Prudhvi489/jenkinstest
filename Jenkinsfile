@@ -33,9 +33,11 @@ pipeline {
             }
           }
         //   deploy staged
-           stage('Deploy to Elastic Beanstalk') {
+           //   deploy staged
+           stage('Deploy to EC2') {
                   steps {
-                       sh "eb deploy $EB_ENV_NAME --profile $IAM_ROLE_NAME --instance-profile=$EC2_INSTANCE_PROFILE_NAME"
+                    ssh ec2-user@i-04da7dd9b549550d9
+                       sh "docker run -itd --rm --name test -p 3000:3000 $IMAGE_NAME:$TAG"
                   }
            }
           
