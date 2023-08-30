@@ -35,10 +35,13 @@ pipeline {
         //   deploy staged
            //   deploy staged
            stage('Deploy to EC2') {
-                  steps {
-                    ssh ec2-user@i-04da7dd9b549550d9
-                       sh "docker run -itd --rm --name test -p 3000:3000 $IMAGE_NAME:$TAG"
-                  }
+                steps {
+                script {
+                    sshagent(['my-ec2-ssh-key']) {
+                        sh "ssh ec2-user@13.234.160.250 'docker pull $IMAGE_NAME:$TAG'"
+                        sh "ssh ec2-user@13.234.160.250 'docker run -d -p 3000:3000 $IMAGE_NAME:$TAG'"
+                    }
+                }
            }
           
     }
