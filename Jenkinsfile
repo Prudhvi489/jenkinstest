@@ -34,15 +34,15 @@ pipeline {
           }
         //   deploy staged
            //   deploy staged
-           stage('Deploy to EC2') {
-                steps {
-                script {
-                    sshagent(['my-ec2-ssh-key']) {
-                        sh "ssh ec2-user@13.234.160.250 docker pull $IMAGE_NAME:$TAG"
-                        sh "ssh ec2-user@13.234.160.250 docker run -d -p 3000:3000 $IMAGE_NAME:$TAG"
-                    }
-                }
-           }
+        //    stage('Deploy to EC2') {
+        //         steps {
+        //         script {
+        //             sshagent(['my-ec2-ssh-key']) {
+        //                 sh "ssh ec2-user@13.234.160.250 docker pull $IMAGE_NAME:$TAG"
+        //                 sh "ssh ec2-user@13.234.160.250 docker run -d -p 3000:3000 $IMAGE_NAME:$TAG"
+        //             }
+        //         }
+        //    }
           
     }
 }
