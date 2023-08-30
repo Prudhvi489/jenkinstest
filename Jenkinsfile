@@ -31,7 +31,7 @@ pipeline {
           }
         //   deploy staged
            //   deploy staged
-         stage('Connect to EC2') {
+         stage('Connecting to EC2') {
             steps {
                 script {
                     // Add EC2 instance to known hosts
