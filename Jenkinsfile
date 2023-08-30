@@ -29,8 +29,8 @@ pipeline {
                  sh 'docker push $IMAGE_NAME'
             }
           }
-          deploy staged
-             deploy staged
+        //   deploy staged
+        //      deploy staged
          stage('Connecting to EC2') {
              steps {
                 script {
