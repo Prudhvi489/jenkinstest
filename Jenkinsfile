@@ -1,7 +1,7 @@
 pipeline {
     // agent any
     agent{
-        label "jenkins_connect"
+        label 'jenkins_connect'
     }
     
     environment {
@@ -15,30 +15,31 @@ pipeline {
     }
     
     stages {
-        stage('Build') {
-            steps {
-                script {
-                    sh 'docker build -t $IMAGE_NAME:$TAG .'
-                }
-            }
-        }
-         stage('Login') {
-           steps {
-               sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
-           }
-         }
-         stage('Push') {
-            steps {
-                 sh 'docker push $IMAGE_NAME'
-            }
-          }
+        // stage('Build') {
+        //     steps {
+        //         script {
+        //             sh 'docker build -t $IMAGE_NAME:$TAG .'
+        //         }
+        //     }
+        // }
+        //  stage('Login') {
+        //    steps {
+        //        sh 'docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD'
+        //    }
+        //  }
+        //  stage('Push') {
+        //     steps {
+        //          sh 'docker push $IMAGE_NAME'
+        //     }
+        //   }
         //   deploy staged
         //      deploy staged
          stage('Connecting to EC2') {
              steps {
                 script {
                     def dockerCmd = 'docker run  -p 3000:3000 --name test -it $IMAGE_NAME:$TAG'
-                    sshagent(credentials:['ec2-user']) {credentials->
+                    sshagent(credentials:['ec2-user']) {
+                        // credentials->
                         // echo "${credentials}"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.167.200 ${dockerCmd}"
                     }
