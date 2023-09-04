@@ -1,8 +1,8 @@
 pipeline {
-    // agent any
-    agent{
-        label 'jenkins_connect'
-    }
+    agent any
+    // agent{
+    //     label 'jenkins_connect'
+    // }
     
     environment {
         PATH = "${PATH}:/home/prudhvi/.local/bin/eb"
