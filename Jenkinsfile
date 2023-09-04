@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    // agent any
+    agent{
+        label "jenkins_connect"
+    }
     
     environment {
         PATH = "${PATH}:/home/prudhvi/.local/bin/eb"
@@ -36,8 +39,8 @@ pipeline {
                 script {
                     def dockerCmd = 'docker run  -p 3000:3000 --name test -it $IMAGE_NAME:$TAG'
                     sshagent(credentials:['ec2-user']) {credentials->
-                        echo "${credentials}"
-                        // sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.167.200 ${dockerCmd}"
+                        // echo "${credentials}"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.167.200 ${dockerCmd}"
                     }
                 }
               }
