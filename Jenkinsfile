@@ -31,16 +31,16 @@ pipeline {
           }
         //   deploy staged
         //      deploy staged
-        //  stage('Connecting to EC2') {
-        //      steps {
-        //         script {
-        //             def dockerCmd = 'docker run  -p 3000:3000 --name test -it $IMAGE_NAME:$TAG'
-        //             sshagent(credentials:['ec2-server-key']) {
-        //                 sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.167.200 ${dockerCmd}"
-        //             }
-        //         }
-        //       }
+         stage('Connecting to EC2') {
+             steps {
+                script {
+                    def dockerCmd = 'docker run  -p 3000:3000 --name test -it $IMAGE_NAME:$TAG'
+                    sshagent(credentials:['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.167.200 ${dockerCmd}"
+                    }
+                }
+              }
           
-        //  }
+         }
 }
 }
