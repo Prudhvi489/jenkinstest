@@ -37,7 +37,7 @@ pipeline {
         stage('Connecting to EC2') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'ec2-instance', username: 'ec2-user', password: 'your_password')]) {
+                    withCredentials([usernamePassword(credentialsId: 'ec2-instance', username: 'prudhvisai489@gmail.com', password: 'Navya@$1')]) {
                             sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.167.200"
                         }
                         }
