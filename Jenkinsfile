@@ -37,9 +37,9 @@ pipeline {
         stage('Connecting to EC2') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'ec2-instance', username: 'prudhvisai489@gmail.com', password: 'Navya@$1')]) {
+                    // withCredentials([usernamePassword(credentialsId: 'ec2-instance', username: 'prudhvisai489@gmail.com', password: 'Navya@$1')]) {
                             sh "ssh -i `home/prudhvi/Pictures/pemfiles/docker_server.pem` ubuntu@ec2-15-206-167-200.ap-south-1.compute.amazonaws.com"
-                        }
+                        // }
                         }
                    }
         }
